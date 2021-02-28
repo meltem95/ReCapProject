@@ -10,7 +10,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            // CarTest();
+            //CarTest();
             // BrandTest();
             // ColorTest();
 
@@ -20,13 +20,13 @@ namespace ConsoleUI
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
 
-            Console.WriteLine(colorManager.GetById(3).ColorName);
+            Console.WriteLine(colorManager.GetById(3).Data.ColorName);
         }
 
         private static void BrandTest()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var brand in brandManager.GetAll())
+            foreach (var brand in brandManager.GetAll().Data)
             {
                 Console.WriteLine(brand.BrandName);
             }
@@ -35,12 +35,20 @@ namespace ConsoleUI
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-           
+            var result = carManager.GetCarDetails();
 
-            foreach (var car in carManager.GetCarDetails())
+            if (result.Success==true)
             {
-                Console.WriteLine(car.BrandName + '/' + car.ColorName  + '/' + car.ModelYear + '/' + car.DailyPrice );
+                   foreach (var car in result.Data)
+                   {
+                     Console.WriteLine(car.BrandName + '/' + car.ColorName  + '/' + car.ModelYear + '/' + car.DailyPrice );
+                   }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+           
         }
     }
 }
