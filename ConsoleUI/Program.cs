@@ -9,11 +9,25 @@ namespace ConsoleUI
     class Program
     {
         static void Main(string[] args)
-        {
+
+        {   //UserTest();
             //CarTest();
             // BrandTest();
             // ColorTest();
+            //CustomerTest();
 
+        }
+
+        private static void CustomerTest()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer { UserId = 2, CompanyName = "Company2" });
+        }
+
+        private static void UserTest()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Add(new User { Id = 2, FirstName = "Aleyna", LastName = "Güleç", Email = "aleyna1@gmail.com", Password = "123*" });
         }
 
         private static void ColorTest()
@@ -35,20 +49,23 @@ namespace ConsoleUI
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
+
+
+
             var result = carManager.GetCarDetails();
 
-            if (result.Success==true)
+            if (result.Success == true)
             {
-                   foreach (var car in result.Data)
-                   {
-                     Console.WriteLine(car.BrandName + '/' + car.ColorName  + '/' + car.ModelYear + '/' + car.DailyPrice );
-                   }
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.BrandName + '/' + car.ColorName + '/' + car.ModelYear + '/' + car.DailyPrice);
+                }
             }
             else
             {
                 Console.WriteLine(result.Message);
             }
-           
+
         }
     }
 }

@@ -6,4 +6,7 @@ INSERT INTO [dbo].[Cars] ([Id], [BrandId], [ColorId], [ModelYear], [DailyPrice],
 INSERT INTO [dbo].[Cars] ([Id], [BrandId], [ColorId], [ModelYear], [DailyPrice], [Description]) VALUES (5, 2, 2, N'2017', CAST(400 AS Decimal(18, 0)), N'2017 model Ford')
 INSERT INTO [dbo].[Cars] ([Id], [BrandId], [ColorId], [ModelYear], [DailyPrice], [Description]) VALUES (6, 4, 1, N'2018', CAST(1000 AS Decimal(18, 0)), N'2018 model Mercedes')
 INSERT INTO [dbo].[Cars] ([Id], [BrandId], [ColorId], [ModelYear], [DailyPrice], [Description]) VALUES (7, 2, 4, N'2019', CAST(500 AS Decimal(18, 0)), N'2019 model Ford')
+INSERT INTO [dbo].[Cars] ([Id], [BrandId], [ColorId], [ModelYear], [DailyPrice], [Description]) VALUES (1002, 2, 7, N'2011', CAST(300 AS Decimal(18, 0)), N'2011 Model Ford')
 SET IDENTITY_INSERT [dbo].[Cars] OFF
+
+Delete from Cars where ModelYear='2011'
