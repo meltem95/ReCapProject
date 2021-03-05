@@ -9,7 +9,7 @@ using Entities.Concrete;
 
 namespace Business.Concrete
 {
-    class RentalManager : IRentalService
+   public  class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
 
@@ -37,7 +37,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Rental>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 03)
             {
                 return new ErrorDataResult<List<Rental>>(Messages.MaintenanceTime);
             }

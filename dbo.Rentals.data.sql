@@ -1,0 +1,1 @@
+﻿INSERT INTO [dbo].[Rentals] ([Id], [CarId], [CustomerId], [RentDate], [ReturnDate]) VALUES (1, 1, 1,'01.03.2021','01.04.2021')
