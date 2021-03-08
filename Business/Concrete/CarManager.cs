@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 
 namespace Business.Concrete
 {
@@ -21,16 +25,15 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-               if (car.Description.Length<2)
-                {
-                    return new ErrorResult(Messages.CarDescriptionInvalid);
-                }
-                  
-              _carDal.Add(car);
+           
 
-              return new SuccessResult(Messages.CarAdded); 
+
+             _carDal.Add(car);
+
+             return new SuccessResult(Messages.CarAdded); 
            
         }
 
